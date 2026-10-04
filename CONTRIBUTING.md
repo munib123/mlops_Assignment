@@ -58,7 +58,18 @@ Keep commits atomic, descriptive, and focused on one logical change.
    git fetch origin && git rebase origin/dev
    ```
 7. **Lock file exclusivity**: Only one open PR may modify `pyproject.toml` or `uv.lock` at a time to prevent dependency conflicts.
-8. **Pre-commit hooks**: Ensure hooks are installed once per clone before making commits:
-   ```bash
-   uv run pre-commit install
-   ```
+
+---
+
+## 5. Pre-commit Guardrails
+
+Pre-commit hooks are configured to enforce code formatting, linting, notebook output stripping, large file prevention, and secret detection.
+
+Everyone must install hooks once per clone before making their first commit:
+```bash
+uv run pre-commit install
+```
+Hooks run automatically on `git commit`. To run them manually across all files:
+```bash
+uv run pre-commit run --all-files
+```
